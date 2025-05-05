@@ -20,11 +20,19 @@
                  Clicked="SearchUserButton_Clicked"
                  Command="{Binding SearchUser}"
                  CommandParameter="{Binding Text, Source={x:Reference UserIdEntry}}"/>
+            <Button Text="Add User" Command="{Binding AddUser}"/>
         </HorizontalStackLayout>
 
         <!-- CollectionView Section -->
-        <CollectionView Grid.Row="1"
-                     ItemsSource="{Binding users}"
+        <Grid Grid.Row="1"
+            ColumnDefinitions="*,*">
+            
+            
+            
+            
+        
+         <CollectionView 
+                     ItemsSource="{Binding users_odd}"
                      HorizontalOptions="Center"
                      VerticalOptions="Center">
            
@@ -62,6 +70,47 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+            <CollectionView  Grid.Column="1"
+             ItemsSource="{Binding users_even}"
+             HorizontalOptions="Center"
+             VerticalOptions="Center">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+
+                        <HorizontalStackLayout Spacing="20" 
+                                            HorizontalOptions="Center">
+                            <Image Source="{Binding avatar}"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             WidthRequest="100"/>
+                            <VerticalStackLayout>
+
+                                <!-- ID Column -->
+                                <Label Text="{Binding id}" 
+                              FontSize="Medium"
+                              TextColor="Black"
+                              Margin="0,0,10,0" />
+                                <!-- Name Column -->
+                                <Label Text="{Binding name}" 
+                               FontSize="Medium"
+                               TextColor="Black"/>
+
+                            </VerticalStackLayout>
+
+
+
+                        </HorizontalStackLayout>
+
+
+
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </Grid>
 
 </ContentPage>
