@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MockupApiTesting.MainPage">
+
+    <Grid RowDefinitions="Auto, *">
+        <!-- Header Section -->
+        <HorizontalStackLayout Grid.Row="0"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Spacing="20">
+            <Button Text="All Users" Command="{Binding RetreiveAllUsers}"/>
+            <Entry
+             x:Name="UserIdEntry"
+             Placeholder="Enter User ID"
+             Keyboard="Numeric"
+             WidthRequest="100"/>
+            <Button Text="Search User" 
+                 x:Name="SearchUserButton"
+                 Clicked="SearchUserButton_Clicked"
+                 Command="{Binding SearchUser}"
+                 CommandParameter="{Binding Text, Source={x:Reference UserIdEntry}}"/>
+        </HorizontalStackLayout>
+
+        <!-- CollectionView Section -->
+        <CollectionView Grid.Row="1"
+                     ItemsSource="{Binding users}"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center">
+           
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    
+
+                            <HorizontalStackLayout Spacing="20" 
+                                                    HorizontalOptions="Center">
+                                <Image Source="{Binding avatar}"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     WidthRequest="100"/>
+                                <VerticalStackLayout>
+
+                                    <!-- ID Column -->
+                                    <Label Text="{Binding id}" 
+                                      FontSize="Medium"
+                                      TextColor="Black"
+                                      Margin="0,0,10,0" />
+                                    <!-- Name Column -->
+                                    <Label Text="{Binding name}" 
+                                       FontSize="Medium"
+                                       TextColor="Black"/>
+
+                                </VerticalStackLayout>
+
+
+
+                            </HorizontalStackLayout>
+
+
+
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
